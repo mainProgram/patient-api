@@ -1,0 +1,36 @@
+services:
+  java:
+    build:
+      context: ./
+    ports:
+      - "8084:8080"
+    container_name: java
+    links:
+      - mongo
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      WAIT_HOSTS: mongodb:27017
+    networks:
+      - shared-net
+
+  mongo:
+    image: mongo:4.4
+    ports:
+      - 27018:27017
+    container_name: mongo
+    restart: always
+    volumes:
+      - /home/sinoed/data/db:/data/db
+    networks:
+      - shared-net
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo --host localhost --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+networks:
+  shared-net:
+    driver: bridge
