@@ -13,5 +13,5 @@ public interface PatientService {
     List<PatientResponse> getAllPatients();
     Optional<PatientWithContactResponse> getPatientById(String id);
     boolean deletePatient(String id);
-    Optional<PatientResponse> updatePatient(String id, PatientRequest productDto);
+    Optional<PatientWithContactResponse> updatePatient(String id, PatientRequest patientRequest);
 }

@@ -57,17 +57,20 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Optional<PatientResponse> updatePatient(String id, PatientRequest patientRequest) {
+    public Optional<PatientWithContactResponse> updatePatient(String id, PatientRequest patientRequest) {
         return Optional.ofNullable(patientRepository.findById(id)
-                .map(patient -> {
-                    try {
-                        // Mettre à jour le patient
-                        PatientEntity updatedPatient = patientRepository.save(patient);
-                        return PatientMapper.mapEntityToResponse(updatedPatient);
-                    } catch (Exception e) {
-                        throw new UpdateFailedException("La mise à jour du patient a échoué : " + e.getMessage());
-                    }
+                .map(Patient -> {
+                    Patient.setNom(patientRequest.getNom());
+                    Patient.setPrenom(patientRequest.getPrenom());
+                    Patient.setDateNaissance(patientRequest.getDateNaissance());
+                    Patient.setSexe(patientRequest.getSexe());
+                    Patient.setTaille(patientRequest.getTaille());
+                    Patient.setPoids(patientRequest.getPoids());
+                    Patient.setContacts(contactService.saveContacts(patientRequest.getContacts());
+                    PatientEntity updatedPatient = patientRepository.save(Patient);
+                    return PatientMapper.mapEntityToResponseWithContacts(updatedPatient);
                 })
                 .orElseThrow(() -> new EntityNotFoundException("Le patient avec l'ID " + id + " n'existe pas.")));
     }
+
 }

@@ -30,4 +30,9 @@ public class PatientController {
     public ResponseEntity<PatientWithContactResponse> getOne(@PathVariable("id") String id){
         return ResponseEntity.ok().body(patientService.getPatientById(id).get());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PatientWithContactResponse> update(@PathVariable("id") String id, @RequestBody PatientRequest patientRequest){
+        return ResponseEntity.ok().body(patientService.updatePatient(id, patientRequest).get());
+    }
 }
