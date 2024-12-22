@@ -1,8 +1,6 @@
 package sn.fhunHospital.patient_api.service.impl;
 
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;

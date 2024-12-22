@@ -4,9 +4,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 import sn.fhunHospital.patient_api.utils.enums.SexeEnum;
 import sn.fhunHospital.patient_api.utils.enums.SexeEnumConstraint;
 
@@ -39,6 +39,6 @@ public class PatientEntity {
     @NotNull
     private Double poids;
 
-    @DBRef
+    @Cascade(CascadeType.SAVE_UPDATE)
     private List<ContactEntity> contacts;
 }

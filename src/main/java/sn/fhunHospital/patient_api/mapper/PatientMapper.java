@@ -35,11 +35,13 @@ public class PatientMapper {
 
         PatientResponse patientResponse = PatientResponse
                 .builder()
+                .id(patientEntity.getId().toString())
                 .prenom(patientEntity.getPrenom())
                 .nom(patientEntity.getNom())
                 .taille(patientEntity.getTaille())
                 .poids(patientEntity.getPoids())
                 .sexe(patientEntity.getSexe())
+                .dateNaissance(patientEntity.getDateNaissance())
                 .contacts(ContactMapper.mapEntitiesToResponses(patientEntity.getContacts()))
                 .build();
 
