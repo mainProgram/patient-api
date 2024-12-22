@@ -23,6 +23,7 @@ import java.util.Optional;
 public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
+
     private final ContactService contactService;
 
     @Override
@@ -47,12 +48,21 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public boolean deletePatient(String id) {
+        Optional<PatientEntity> patientEntity;
         try {
-            patientRepository.deleteById(id);
-            return true;
+            patientEntity = patientRepository.findById(id);
         } catch (EmptyResultDataAccessException e) {
             throw new EntityNotFoundException("Le patient avec l'ID " + id + " n'existe pas.");
         }
+        if (patientEntity.isPresent()){
+            List<ContactEntity> contacts = patientEntity.get().getContacts();
+            if (contacts != null && !contacts.isEmpty()) {
+                contactService.deleteContacts(contacts);
+            }
+            patientRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     @Override

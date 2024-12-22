@@ -25,4 +25,9 @@ public class ContactServiceImpl implements ContactService {
     public List<ContactEntity> saveContacts(List<ContactRequest> contactRequest) {
         return contactRepository.saveAll(ContactMapper.mapRequestToEntities(contactRequest));
     }
+
+    @Override
+    public void deleteContacts(List<ContactEntity> contactEntity) {
+        contactRepository.deleteAll(contactEntity);
+    }
 }

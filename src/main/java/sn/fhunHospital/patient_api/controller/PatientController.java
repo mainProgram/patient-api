@@ -35,4 +35,9 @@ public class PatientController {
     public ResponseEntity<PatientWithContactResponse> update(@PathVariable("id") String id, @RequestBody PatientRequest patientRequest){
         return ResponseEntity.ok().body(patientService.updatePatient(id, patientRequest).get());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> update(@PathVariable("id") String id){
+        return ResponseEntity.ok().body(patientService.deletePatient(id));
+    }
 }
