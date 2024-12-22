@@ -33,6 +33,7 @@ public class ContactMapper {
     public static ContactResponse mapEntityToResponse(ContactEntity contactEntity) {
         ContactResponse contactResponse = ContactResponse
                 .builder()
+                .id(contactEntity.getId())
                 .contact(contactEntity.getContact())
                 .type(contactEntity.getType().toString())
                 .build();

@@ -7,9 +7,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import sn.fhunHospital.patient_api.dto.requests.PatientRequest;
 import sn.fhunHospital.patient_api.dto.responses.PatientResponse;
+import sn.fhunHospital.patient_api.dto.responses.PatientWithContactResponse;
 import sn.fhunHospital.patient_api.mapper.PatientMapper;
+import sn.fhunHospital.patient_api.model.ContactEntity;
 import sn.fhunHospital.patient_api.model.PatientEntity;
 import sn.fhunHospital.patient_api.repository.PatientRepository;
+import sn.fhunHospital.patient_api.service.ContactService;
 import sn.fhunHospital.patient_api.service.PatientService;
 import sn.fhunHospital.patient_api.utils.exception.UpdateFailedException;
 import java.util.List;
@@ -21,10 +24,14 @@ import java.util.Optional;
 public class PatientServiceImpl implements PatientService {
 
     private final PatientRepository patientRepository;
+    private final ContactService contactService;
 
     @Override
     public PatientResponse savePatient(PatientRequest patientRequest) {
-        return PatientMapper.mapEntityToResponse(patientRepository.save(PatientMapper.mapRequestToEntity(patientRequest)));
+        List<ContactEntity> contactEntities = contactService.saveContacts(patientRequest.getContacts());
+        PatientEntity patientEntity = PatientMapper.mapRequestToEntity(patientRequest);
+        patientEntity.setContacts(contactEntities);
+        return PatientMapper.mapEntityToResponse(patientRepository.save(patientEntity));
     }
 
     @Override
@@ -33,9 +40,9 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Optional<PatientResponse> getPatientById(String id) {
+    public Optional<PatientWithContactResponse> getPatientById(String id) {
         return Optional.ofNullable(patientRepository.findById(id)
-                .map(PatientMapper::mapEntityToResponse)
+                .map(PatientMapper::mapEntityToResponseWithContacts)
                 .orElseThrow(() -> new EntityNotFoundException("Le patient avec l'ID " + id + " n'existe pas.")));
     }
 

@@ -9,6 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 public class ContactResponse {
 
+    private String id;
+
     private String type;
 
     private String contact;

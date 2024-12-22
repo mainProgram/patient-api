@@ -3,8 +3,8 @@ package sn.fhunHospital.patient_api.mapper;
 import org.springframework.stereotype.Component;
 import sn.fhunHospital.patient_api.dto.requests.PatientRequest;
 import sn.fhunHospital.patient_api.dto.responses.PatientResponse;
+import sn.fhunHospital.patient_api.dto.responses.PatientWithContactResponse;
 import sn.fhunHospital.patient_api.model.PatientEntity;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +36,20 @@ public class PatientMapper {
         PatientResponse patientResponse = PatientResponse
                 .builder()
                 .id(patientEntity.getId().toString())
+                .prenom(patientEntity.getPrenom())
+                .nom(patientEntity.getNom())
+                .sexe(patientEntity.getSexe())
+                .dateNaissance(patientEntity.getDateNaissance())
+                .build();
+
+        return patientResponse;
+    }
+
+    public static PatientWithContactResponse mapEntityToResponseWithContacts(PatientEntity patientEntity) {
+
+        PatientWithContactResponse patientResponse = PatientWithContactResponse
+                .builder()
+                .id(patientEntity.getId())
                 .prenom(patientEntity.getPrenom())
                 .nom(patientEntity.getNom())
                 .taille(patientEntity.getTaille())

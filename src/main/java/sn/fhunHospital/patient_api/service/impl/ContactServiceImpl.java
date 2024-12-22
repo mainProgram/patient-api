@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import sn.fhunHospital.patient_api.dto.requests.ContactRequest;
 import sn.fhunHospital.patient_api.dto.responses.ContactResponse;
 import sn.fhunHospital.patient_api.mapper.ContactMapper;
+import sn.fhunHospital.patient_api.model.ContactEntity;
 import sn.fhunHospital.patient_api.repository.ContactRepository;
 import sn.fhunHospital.patient_api.service.ContactService;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -17,5 +19,10 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public ContactResponse saveContact(ContactRequest contactRequest) {
         return ContactMapper.mapEntityToResponse(contactRepository.save(ContactMapper.mapRequestToEntity(contactRequest)));
+    }
+
+    @Override
+    public List<ContactEntity> saveContacts(List<ContactRequest> contactRequest) {
+        return contactRepository.saveAll(ContactMapper.mapRequestToEntities(contactRequest));
     }
 }

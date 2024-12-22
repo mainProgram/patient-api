@@ -1,15 +1,13 @@
 package sn.fhunHospital.patient_api.model;
 
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Data;
-import org.bson.types.ObjectId;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import sn.fhunHospital.patient_api.utils.enums.SexeEnum;
 import sn.fhunHospital.patient_api.utils.enums.SexeEnumConstraint;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -18,7 +16,8 @@ import java.util.List;
 @Document(collection = "patient")
 public class PatientEntity {
 
-    private ObjectId id;
+    @Id
+    private String id;
 
     @NotNull
     private String nom;
@@ -39,6 +38,6 @@ public class PatientEntity {
     @NotNull
     private Double poids;
 
-    @Cascade(CascadeType.SAVE_UPDATE)
+    @DBRef
     private List<ContactEntity> contacts;
 }
