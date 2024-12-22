@@ -14,7 +14,6 @@ import sn.fhunHospital.patient_api.model.PatientEntity;
 import sn.fhunHospital.patient_api.repository.PatientRepository;
 import sn.fhunHospital.patient_api.service.ContactService;
 import sn.fhunHospital.patient_api.service.PatientService;
-import sn.fhunHospital.patient_api.utils.exception.UpdateFailedException;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +65,7 @@ public class PatientServiceImpl implements PatientService {
                     Patient.setSexe(patientRequest.getSexe());
                     Patient.setTaille(patientRequest.getTaille());
                     Patient.setPoids(patientRequest.getPoids());
-                    Patient.setContacts(contactService.saveContacts(patientRequest.getContacts());
+                    Patient.setContacts(contactService.saveContacts(patientRequest.getContacts()));
                     PatientEntity updatedPatient = patientRepository.save(Patient);
                     return PatientMapper.mapEntityToResponseWithContacts(updatedPatient);
                 })
