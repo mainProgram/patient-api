@@ -1,24 +1,21 @@
-package sn.fhunHospital.patient_api.model;
+package sn.fhunHospital.patient_api.dto.requests;
 
+
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Data;
-import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import lombok.*;
 import sn.fhunHospital.patient_api.utils.enums.SexeEnum;
 import sn.fhunHospital.patient_api.utils.enums.SexeEnumConstraint;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Data
 @Builder
-@Document(collection = "patient")
-public class PatientEntity {
-
-    private ObjectId id;
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class PatientRequest {
 
     @NotNull
     private String nom;
@@ -39,6 +36,6 @@ public class PatientEntity {
     @NotNull
     private Double poids;
 
-    @DBRef
-    private List<ContactEntity> contacts;
+    @NotEmpty
+    private List<ContactRequest> contacts;
 }

@@ -1,19 +1,16 @@
-package sn.fhunHospital.patient_api.model;
+package sn.fhunHospital.patient_api.dto.requests;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.mapping.Document;
 import sn.fhunHospital.patient_api.utils.enums.TypeContactEnum;
 import sn.fhunHospital.patient_api.utils.enums.TypeContactEnumConstraint;
 
-@Data
 @Builder
-@Document(collection = "contact")
-public class ContactEntity {
-
-    private ObjectId id;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class ContactRequest {
     @NotNull
     private String contact;
 

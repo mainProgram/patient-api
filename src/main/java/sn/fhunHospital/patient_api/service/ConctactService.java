@@ -1,4 +1,4 @@
 package sn.fhunHospital.patient_api.service;
 
-public class ConctactService {
+public interface ConctactService {
 }
