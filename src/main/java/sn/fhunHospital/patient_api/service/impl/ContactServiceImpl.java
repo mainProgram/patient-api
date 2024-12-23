@@ -27,6 +27,11 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
+    public List<ContactEntity> saveContactsEntities(List<ContactEntity> contactEntity) {
+        return contactRepository.saveAll(contactEntity);
+    }
+
+    @Override
     public void deleteContacts(List<ContactEntity> contactEntity) {
         contactRepository.deleteAll(contactEntity);
     }

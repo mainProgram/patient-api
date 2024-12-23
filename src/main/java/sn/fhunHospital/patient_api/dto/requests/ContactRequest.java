@@ -11,6 +11,9 @@ import sn.fhunHospital.patient_api.utils.enums.TypeContactEnumConstraint;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContactRequest {
+
+    private String id;
+
     @NotNull
     private String contact;
 

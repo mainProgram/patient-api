@@ -12,5 +12,7 @@ public interface ContactService {
 
     List<ContactEntity> saveContacts(List<ContactRequest> contactRequest);
 
+    List<ContactEntity> saveContactsEntities(List<ContactEntity> contactEntity);
+
    void deleteContacts(List<ContactEntity> contactEntity);
 }
