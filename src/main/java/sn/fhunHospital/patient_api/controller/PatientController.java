@@ -8,6 +8,9 @@ import sn.fhunHospital.patient_api.dto.requests.PatientRequest;
 import sn.fhunHospital.patient_api.dto.responses.PatientResponse;
 import sn.fhunHospital.patient_api.dto.responses.PatientWithContactResponse;
 import sn.fhunHospital.patient_api.service.PatientService;
+import sn.fhunHospital.patient_api.utils.exception.ApiResponse;
+import sn.fhunHospital.patient_api.utils.exception.ResponseUtil;
+
 import java.util.List;
 
 @RestController
@@ -28,8 +31,8 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PatientWithContactResponse> getOne(@PathVariable("id") String id){
-        return ResponseEntity.ok().body(patientService.getPatientById(id).get());
+    public ResponseEntity<ApiResponse<PatientWithContactResponse>> getOne(@PathVariable("id") String id){
+        return ResponseEntity.ok(ResponseUtil.success(patientService.getPatientById(id).get(), "Employee updated successfully"));
     }
 
     @PutMapping("/{id}")

@@ -1,25 +1,20 @@
 package sn.fhunHospital.patient_api.utils.exception;
 
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.time.LocalDateTime;
+import java.util.Arrays;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class ApiExceptionHandler {
 
-    @ExceptionHandler(value = {EntityNotFoundException.class})
-    public ResponseEntity<ApiException> handleEntityNotFoundException(EntityNotFoundException e) {
-        ApiException exception = new ApiException(e.getMessage(), HttpStatus.NOT_FOUND.value());
-        return new ResponseEntity<>(exception, HttpStatus.NOT_FOUND);
-    }
-    @ExceptionHandler(value = {EntityExistsException.class})
-    public ResponseEntity<ApiException> handleEntityExistException(EntityExistsException e) {
-        ApiException exception = new ApiException(e.getMessage(), HttpStatus.BAD_REQUEST.value());
-        return new ResponseEntity<>(exception, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(Exception.class)
+    public ApiResponse<Object> handleGeneralException(Exception ex) {
+        return ResponseUtil.error(Arrays.asList(ex.getMessage()), "An unexpected error occurred", 1001);
     }
 
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ApiResponse<Object> handleEntityNotFoundException(EntityNotFoundException ex) {
+        return ResponseUtil.error(Arrays.asList(ex.getMessage()), "Resource not found", 404);
+    }
 }
