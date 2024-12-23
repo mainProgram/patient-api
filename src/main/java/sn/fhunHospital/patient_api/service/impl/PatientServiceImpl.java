@@ -1,6 +1,5 @@
 package sn.fhunHospital.patient_api.service.impl;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -15,6 +14,7 @@ import sn.fhunHospital.patient_api.model.PatientEntity;
 import sn.fhunHospital.patient_api.repository.PatientRepository;
 import sn.fhunHospital.patient_api.service.ContactService;
 import sn.fhunHospital.patient_api.service.PatientService;
+import sn.fhunHospital.patient_api.utils.exception.EntityNotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
