@@ -14,7 +14,7 @@ import sn.fhunHospital.patient_api.utils.exception.ResponseUtil;
 import java.util.List;
 
 @RestController
-@RequestMapping("/patients")
+@RequestMapping("/api/v1/patients")
 @RequiredArgsConstructor
 public class PatientController {
 

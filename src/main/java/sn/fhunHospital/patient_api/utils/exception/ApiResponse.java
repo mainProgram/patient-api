@@ -19,6 +19,4 @@ public class ApiResponse<T> {
     private int errorCode;
 
     private long timestamp;
-
-    private String path;
 }
