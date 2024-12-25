@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nom\": \"Fama\",\r\n    \"prenom\": \"Fama\",\r\n    \"dateNaissance\": \"2000-12-10\",\r\n    \"taille\": 180,\r\n    \"poids\": 58,\r\n    \"sexe\": \"FEMME\",\r\n    \"contacts\": [\r\n        {\r\n            \"type\": \"MAIL\",\r\n            \"contact\": \"fz@gmail.com\"\r\n        },\r\n         {\r\n            \"type\": \"EMAIL\",\r\n            \"contact\": \"fz@gmail.com\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"nom\": \"aTambedou\",\r\n    \"prenom\": \"Fama\",\r\n    \"dateNaissance\": \"2000-12-10\",\r\n    \"taille\": 180,\r\n    \"poids\": 58,\r\n    \"sexe\": \"FEMME\",\r\n    \"contacts\": [\r\n        {\r\n            \"type\": \"email\",\r\n            \"contact\": \"fz@gmail.com\"\r\n        },\r\n         {\r\n            \"type\": \"EMAIL\",\r\n            \"contact\": \"fz@gmail.com\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,13 +24,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8084/patients",
+							"raw": "http://localhost:8084/api/v1/patients",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
+								"api",
+								"v1",
 								"patients"
 							]
 						}
@@ -44,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nom\": \"Fama\",\r\n    \"prenom\": \"Famka\",\r\n    \"dateNaissance\": \"2000-12-10\",\r\n    \"taille\": 180,\r\n    \"poids\": 58,\r\n    \"sexe\": \"FEMME\",\r\n    \"contacts\": [\r\n        {\r\n            \"type\": \"EMAIL\",\r\n            \"contact\": \"fjjjjjjz@gmail.com\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"nom\": \"DIOP\",\r\n    \"prenom\": \"Famka\",\r\n    \"dateNaissance\": \"2000-12-10\",\r\n    \"taille\": 180,\r\n    \"poids\": 58,\r\n    \"sexe\": \"FEMME\",\r\n    \"contacts\": [\r\n        {\r\n            \"type\": \"EMAIL\",\r\n            \"contact\": \"fama@gmail.com\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -52,15 +54,17 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8084/patients/6768a97132be87685af29319",
+							"raw": "http://localhost:8084/api/v1/patients/676a10d75c57fb00e459c435",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
+								"api",
+								"v1",
 								"patients",
-								"6768a97132be87685af29319"
+								"676a10d75c57fb00e459c435"
 							]
 						}
 					},
@@ -81,13 +85,15 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8084/patients/6768867332be87685af292e4/contacts",
+							"raw": "http://localhost:8084/api/v1/patients/6768867332be87685af292e4/contacts",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
+								"api",
+								"v1",
 								"patients",
 								"6768867332be87685af292e4",
 								"contacts"
@@ -102,13 +108,15 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8084/patients/67698a16263c347ba9b146659",
+							"raw": "http://localhost:8084/api/v1/patients/67698a16263c347ba9b146659",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
+								"api",
+								"v1",
 								"patients",
 								"67698a16263c347ba9b146659"
 							]
@@ -122,13 +130,15 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8084/patients/6768867332be87685af292e4/contact/6768b79832be87685af2932d",
+							"raw": "http://localhost:8084/api/v1/patients/6768867332be87685af292e4/contact/6768b79832be87685af2932d",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
+								"api",
+								"v1",
 								"patients",
 								"6768867332be87685af292e4",
 								"contact",
@@ -165,14 +175,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8084/patients/67698a16263c347ba9b14665",
+							"raw": "http://localhost:8084/api/v1patients/67698a16263c347ba9b14665",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8084",
 							"path": [
-								"patients",
+								"api",
+								"v1patients",
 								"67698a16263c347ba9b14665"
 							]
 						}
