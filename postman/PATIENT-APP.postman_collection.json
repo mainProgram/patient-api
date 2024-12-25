@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "797516fb-4c63-4678-b2e2-37ed87dd6b72",
+		"name": "PATIENT-APP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21531816"
+	},
+	"item": [
+		{
+			"name": "Patients",
+			"item": [
+				{
+					"name": "Save patient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\": \"Fama\",\r\n    \"prenom\": \"Fama\",\r\n    \"dateNaissance\": \"2000-12-10\",\r\n    \"taille\": 180,\r\n    \"poids\": 58,\r\n    \"sexe\": \"FEMME\",\r\n    \"contacts\": [\r\n        {\r\n            \"type\": \"MAIL\",\r\n            \"contact\": \"fz@gmail.com\"\r\n        },\r\n         {\r\n            \"type\": \"EMAIL\",\r\n            \"contact\": \"fz@gmail.com\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/patients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put patient",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\": \"Fama\",\r\n    \"prenom\": \"Famka\",\r\n    \"dateNaissance\": \"2000-12-10\",\r\n    \"taille\": 180,\r\n    \"poids\": 58,\r\n    \"sexe\": \"FEMME\",\r\n    \"contacts\": [\r\n        {\r\n            \"type\": \"EMAIL\",\r\n            \"contact\": \"fjjjjjjz@gmail.com\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/patients/6768a97132be87685af29319",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"patients",
+								"6768a97132be87685af29319"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add contacts to patients",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n     {\r\n            \"type\": \"FIXE\",\r\n            \"contact\": \"fz@gmail.com\"\r\n        },\r\n        {\r\n            \"id\": \"6768b31832be87685af29327\",\r\n            \"type\": \"MOBILE\",\r\n            \"contact\": \"fz@gmail.com\"\r\n        },\r\n        {\r\n            \"id\": \"6768b31832be87685af29328\",\r\n            \"type\": \"MOBILE\",\r\n            \"contact\": \"fjjjjjjz@gmail.com\"\r\n        },\r\n        {\r\n            \"id\": \"6768b32b32be87685af29329\",\r\n            \"type\": \"MOBILE\",\r\n            \"contact\": \"fjjjjjjz@gmail.com\"\r\n        }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/patients/6768867332be87685af292e4/contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"patients",
+								"6768867332be87685af292e4",
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete patient",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/patients/67698a16263c347ba9b146659",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"patients",
+								"67698a16263c347ba9b146659"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete contact",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/patients/6768867332be87685af292e4/contact/6768b79832be87685af2932d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"patients",
+								"6768867332be87685af292e4",
+								"contact",
+								"6768b79832be87685af2932d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get patients",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/v1/patients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get patient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/patients/67698a16263c347ba9b14665",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"patients",
+								"67698a16263c347ba9b14665"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
