@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/votre-utilisateur/votre-repo.git', branch: 'main'
+                git url: 'https://github.com/mainProgram/patient-api.git', branch: 'main'
             }
         }
 
