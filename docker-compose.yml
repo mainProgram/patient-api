@@ -24,7 +24,7 @@ services:
     container_name: mongo
     restart: always
     volumes:
-      - /home/sinoed/data/db:/data/db
+      - mongo_db:/data/db
     networks:
       - shared-net
     healthcheck:
@@ -37,3 +37,5 @@ services:
 networks:
   shared-net:
     driver: bridge
+volumes:
+  mongo_db:
