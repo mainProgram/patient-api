@@ -1,6 +1,5 @@
 package sn.fhunHospital.patient_api.controller;
 
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;

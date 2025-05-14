@@ -1,6 +1,5 @@
 package sn.fhunHospital.patient_api.utils.enums;
 
-
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

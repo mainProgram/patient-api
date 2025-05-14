@@ -1,6 +1,5 @@
 package sn.fhunHospital.patient_api.controller;
 
-
 import lombok.Data;
 import java.util.Set;
 

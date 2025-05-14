@@ -1,7 +1,5 @@
 package sn.fhunHospital.patient_api.security;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -81,8 +79,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/api/auth/**").permitAll() // Endpoints d'authentification publics
                                 .requestMatchers("/api/test/all").permitAll()// Endpoint de test public
-                                // Ajoutez ici d'autres endpoints publics si nécessaire (ex: swagger)
-                                .anyRequest().authenticated() // Toutes les autres requêtes nécessitent une authentification
+                                .anyRequest().authenticated()
                 );
 
         http.authenticationProvider(authenticationProvider());
