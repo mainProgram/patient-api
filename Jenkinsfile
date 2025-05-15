@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.6' // Nom défini dans Jenkins > Global Tool Configuration
+        maven 'Maven 3.9.6'
     }
 
     environment {
-        SONARQUBE_ENV = 'SonarQube' // Nom défini dans Jenkins > Configure System
-        SONAR_TOKEN = credentials('sonar-token') // ID du Secret Text contenant le token Sonar
+        SONARQUBE_ENV = 'SonarQube'
+        SONAR_TOKEN = credentials('sonar-token')
     }
 
     stages {
@@ -17,10 +17,10 @@ pipeline {
             }
         }
 
-        stage('Unit Tests') {
+        stage('Build & Test') {
             steps {
                 sh 'chmod +x mvnw'
-                sh './mvnw clean verify'
+                sh './mvnw clean verify'  // Cela compile, exécute les tests et génère les rapports JaCoCo
                 sh 'ls -la target/site/jacoco/'
                 sh 'cat target/site/jacoco/jacoco.xml | head -20 || echo "Le fichier jacoco.xml n\'existe pas"'
             }
@@ -31,38 +31,30 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('SonarQube Analysis') {
             steps {
-                sh './mvnw clean install -DskipTests'
+                withSonarQubeEnv("${SONARQUBE_ENV}") {
+                    sh """
+                    ./mvnw sonar:sonar \
+                      -Dsonar.projectKey=patient-api \
+                      -Dsonar.login=${SONAR_TOKEN} \
+                      -Dsonar.host.url=http://sonarqube:9000 \
+                      -Dsonar.java.coveragePlugin=jacoco \
+                      -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
+                      -Dsonar.junit.reportPaths=target/surefire-reports/ \
+                      -Dsonar.test.inclusions=**/*Test.java \
+                      -Dsonar.java.binaries=target/classes \
+                      -Dsonar.sources=src/main/java \
+                      -Dsonar.tests=src/test/java \
+                      -Dsonar.verbose=true
+                    """
+                }
             }
         }
-
-       stage('SonarQube Analysis') {
-           steps {
-               withSonarQubeEnv("${SONARQUBE_ENV}") {
-                   sh """
-                   ./mvnw sonar:sonar \
-                     -Dsonar.projectKey=patient-api \
-                     -Dsonar.login=${SONAR_TOKEN} \
-                     -Dsonar.host.url=http://sonarqube:9000 \
-                     -Dsonar.java.coveragePlugin=jacoco \
-                     -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
-                     -Dsonar.junit.reportPaths=target/surefire-reports/ \
-                     -Dsonar.test.inclusions=**/*Test.java \
-                     -Dsonar.java.binaries=target/classes \
-                     -Dsonar.sources=src/main/java \
-                     -Dsonar.tests=src/test/java \
-                     -Dsonar.verbose=true
-                   """
-               }
-           }
-       }
 
         stage('Quality Gate') {
             steps {
                 timeout(time: 3, unit: 'MINUTES'){
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
                     waitForQualityGate abortPipeline: true
                 }
             }
