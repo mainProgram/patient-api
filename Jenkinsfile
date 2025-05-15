@@ -21,6 +21,8 @@ pipeline {
             steps {
                 sh 'chmod +x mvnw'
                 sh './mvnw clean test jacoco:report'
+                sh 'ls -la target/site/jacoco/'
+                sh 'cat target/site/jacoco/jacoco.xml | head -20 || echo "Le fichier jacoco.xml n\'existe pas"'
             }
             post {
                 always {
@@ -35,21 +37,26 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv("${SONARQUBE_ENV}") {
-                    sh """
-                    ./mvnw sonar:sonar \
-                      -Dsonar.projectKey=patient-api \
-                      -Dsonar.login=${SONAR_TOKEN} \
-                      -Dsonar.host.url=http://sonarqube:9000 \
-                      -Dsonar.java.coveragePlugin=jacoco \
-                      -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
-                      -Dsonar.junit.reportPaths=target/surefire-reports/
-                    """
-                }
-            }
-        }
+       stage('SonarQube Analysis') {
+           steps {
+               withSonarQubeEnv("${SONARQUBE_ENV}") {
+                   sh """
+                   ./mvnw sonar:sonar \
+                     -Dsonar.projectKey=patient-api \
+                     -Dsonar.login=${SONAR_TOKEN} \
+                     -Dsonar.host.url=http://sonarqube:9000 \
+                     -Dsonar.java.coveragePlugin=jacoco \
+                     -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml \
+                     -Dsonar.junit.reportPaths=target/surefire-reports/ \
+                     -Dsonar.test.inclusions=**/*Test.java \
+                     -Dsonar.java.binaries=target/classes \
+                     -Dsonar.sources=src/main/java \
+                     -Dsonar.tests=src/test/java \
+                     -Dsonar.verbose=true
+                   """
+               }
+           }
+       }
 
         stage('Quality Gate') {
             steps {
