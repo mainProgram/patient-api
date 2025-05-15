@@ -13,7 +13,8 @@ services:
       - SONARQUBE_JDBC_PASSWORD=sonar
     depends_on:
       - db
-
+    networks:
+      - shared-net
   db:
     image: postgres:13
     container_name: sonar-db
@@ -23,10 +24,12 @@ services:
       POSTGRES_DB: sonar
     volumes:
       - sonardb_data:/var/lib/postgresql/data
-
+    networks:
+      - shared-net
   jenkins:
     image: jenkins/jenkins:lts
     container_name: jenkins
+    hostname: jenkins.local
     ports:
       - "8085:8080"
       - "50005:50000"
@@ -36,7 +39,13 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
-
+    networks:
+      - shared-net
 volumes:
   sonardb_data:
   jenkins_home:
+
+networks:
+  shared-net:
+    external: true
+    name: patient-api_shared-net
