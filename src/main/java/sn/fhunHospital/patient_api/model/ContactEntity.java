@@ -9,16 +9,18 @@ import sn.fhunHospital.patient_api.utils.enums.TypeContactEnumConstraint;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Document(collection = "contact")
-public class ContactEntity {
+    public class ContactEntity {
 
-    @Id
-    private String id;
+        @Id
+        private String id;
 
-    @NotNull
-    private String contact;
+        @NotNull
+        private String contact;
 
-    @NotNull
-    @TypeContactEnumConstraint
-    private TypeContactEnum type;
-}
+        @NotNull
+        @TypeContactEnumConstraint
+        private TypeContactEnum type;
+    }

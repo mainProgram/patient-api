@@ -1,6 +1,5 @@
 package sn.fhunHospital.patient_api.controller;
 
-
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import sn.fhunHospital.patient_api.model.AppUser;
 import sn.fhunHospital.patient_api.repository.AppUserRepository;
 import sn.fhunHospital.patient_api.utils.JwtUtil;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,6 +34,7 @@ public class AuthController {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        System.out.println(loginRequest);
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 

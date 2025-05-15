@@ -2,8 +2,10 @@ package sn.fhunHospital.patient_api.model;
 
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import sn.fhunHospital.patient_api.utils.enums.SexeEnum;
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "patient")
 public class PatientEntity {
 

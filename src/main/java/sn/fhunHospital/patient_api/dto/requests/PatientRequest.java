@@ -1,6 +1,5 @@
 package sn.fhunHospital.patient_api.dto.requests;
 
-
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

@@ -1,6 +1,5 @@
 package sn.fhunHospital.patient_api.utils;
 
-
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;

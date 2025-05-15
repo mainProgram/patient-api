@@ -1,6 +1,5 @@
 package sn.fhunHospital.patient_api.controller;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
