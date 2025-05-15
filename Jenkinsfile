@@ -20,7 +20,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh 'chmod +x mvnw'
-                sh './mvnw clean test jacoco:report'
+                sh './mvnw clean verify'
                 sh 'ls -la target/site/jacoco/'
                 sh 'cat target/site/jacoco/jacoco.xml | head -20 || echo "Le fichier jacoco.xml n\'existe pas"'
             }
