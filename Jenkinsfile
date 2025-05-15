@@ -27,7 +27,8 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv("${SONARQUBE_ENV}") {
-                    sh "./mvnw sonar:sonar -Dsonar.login=${SONAR_TOKEN}"
+                    sh 'echo "SonarQube Token length: ${#SONAR_TOKEN}"'  // Affiche la longueur du token sans révéler sa valeur
+                    sh "./mvnw sonar:sonar -Dsonar.projectKey=patient-api -Dsonar.login=${SONAR_TOKEN} -Dsonar.host.url=http://sonarqube:9000"
                 }
             }
         }
