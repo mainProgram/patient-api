@@ -20,7 +20,7 @@ pipeline {
         stage('Unit Tests') {
             steps {
                 sh 'chmod +x mvnw'
-                sh './mvnw test'
+                sh './mvnw clean test jacoco:report'
             }
             post {
                 always {
@@ -53,7 +53,7 @@ pipeline {
 
         stage('Quality Gate') {
             steps {
-                timeout(time: 1, unit: 'HOURS') {
+                timeout(time: 3, unit: 'MINUTES')
                     // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
                     // true = set pipeline to UNSTABLE, false = don't
                     waitForQualityGate abortPipeline: true
