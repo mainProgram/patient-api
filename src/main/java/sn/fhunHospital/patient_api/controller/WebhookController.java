@@ -24,6 +24,6 @@ public class WebhookController {
 
     @GetMapping("/webhook")
     public ResponseEntity<String> webhookHealthCheck() {
-        return ResponseEntity.ok("Endpoint webhook actif !");
+        return ResponseEntity.ok("Endpoint webhook actif!");
     }
 }
