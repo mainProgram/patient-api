@@ -80,7 +80,6 @@ public class WebSecurityConfig {
                         auth.requestMatchers("/api/auth/**").permitAll() // Endpoints d'authentification publics
                                 .requestMatchers("/api/test/all").permitAll()// Endpoint de test public
                                 .requestMatchers("/github-webhook/**").permitAll()
-                                .requestMatchers("/webhook/**").permitAll()
                                 .anyRequest().authenticated()
                 );
 
