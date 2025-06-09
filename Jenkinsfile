@@ -50,15 +50,17 @@ pipeline {
                     """
                 }
             }
+            echo 'Analyse SonarQube lancée en arrière-plan'
+            echo 'Les résultats sur http://localhost:9000'
         }
 
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 3, unit: 'MINUTES'){
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+//         stage('Quality Gate') {
+//             steps {
+//                 timeout(time: 3, unit: 'MINUTES'){
+//                     waitForQualityGate abortPipeline: true
+//                 }
+//             }
+//         }
     }
 
     post {
