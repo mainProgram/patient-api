@@ -1,4 +1,4 @@
-## Pré-requis
+### Pré-requis
 - Docker
 
 ### Lancer l'application
